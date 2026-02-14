@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sukhjit Siddiqui</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin:0;
+  font-family:Poppins, sans-serif;
+  background:linear-gradient(180deg,#fff,#f7f1ff);
+  color:#333;
+  text-align:center;
+  overflow-x:hidden;
+  transition:background 0.6s ease;
+}
+
+/* floating petals */
+.petal {
+  position:fixed;
+  top:-10px;
+  font-size:20px;
+  animation:fall linear infinite;
+  opacity:0.7;
+}
+
+@keyframes fall {
+  to { transform:translateY(110vh); }
+}
+
+section {
+  padding:70px 20px;
+  border-bottom:1px solid #eee;
+}
+
+h1,h2 {
+  font-family:"Playfair Display", serif;
+  color:#6a4fb3;
+}
+
+.hero {
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  background:radial-gradient(circle,#fdfbff,#efe7ff);
+}
+
+.hero h1 {
+  font-size:52px;
+}
+
+.soft-box {
+  background:white;
+  padding:25px;
+  border-radius:20px;
+  margin:15px auto;
+  max-width:600px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+button {
+  background:#6a4fb3;
+  color:white;
+  border:none;
+  padding:12px 20px;
+  border-radius:12px;
+  cursor:pointer;
+  margin:8px;
+  font-size:14px;
+}
+
+button:hover {
+  background:#523a91;
+}
+
+.hidden-message {
+  display:none;
+  margin-top:15px;
+  font-style:italic;
+}
+
+.flower {
+  font-size:32px;
+  cursor:pointer;
+  margin:10px;
+}
+
+.flower-msg {
+  font-size:18px;
+  margin-bottom:20px;
+  min-height:30px;
+}
+
+.countdown {
+  font-size:22px;
+  font-weight:bold;
+}
+
+.letter {
+  max-width:700px;
+  margin:auto;
+  text-align:left;
+  line-height:1.8;
+  font-size:18px;
+  background:white;
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background Music -->
+<audio id="bgMusic" loop preload="auto">
+  <source src="./song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("bgMusic");
+
+function startMusic() {
+  music.play().catch(() => {});
+  document.removeEventListener("click", startMusic);
+  document.removeEventListener("touchstart", startMusic);
+}
+
+document.addEventListener("click", startMusic);
+document.addEventListener("touchstart", startMusic);
+</script>
+
+<!-- petals -->
+<script>
+for(let i=0;i<25;i++){
+  let petal=document.createElement("div");
+  petal.className="petal";
+  petal.innerHTML="🌸";
+  petal.style.left=Math.random()*100+"vw";
+  petal.style.animationDuration=5+Math.random()*5+"s";
+  document.body.appendChild(petal);
+}
+</script>
+
+<!-- HERO -->
+<section class="hero">
+<h1>Sukkhu</h1>
+<p>My universe exists because you exist. I Love You</p>
+<p>Scroll Down.</p>
+</section>
+
+<!-- VALENTINE GIFT -->
+<section>
+<h2>Valentine’s Gift 🎁</h2>
+<button onclick="toggleGift()">Open Gift</button>
+<div id="gift" class="hidden-message">
+My gift is not flowers.  
+Not chocolate.  
+It is a promise.  
+I am building a lifetime with you, Sukkhu.
+</div>
+</section>
+
+<!-- LOVE MESSAGE -->
+<section>
+<h2>My Favorite Girl</h2>
+<div class="soft-box">
+<p>
+Sukkhu, you are soft in a world that forced you to be strong.  
+And I love both versions of you.
+</p>
+
+<button onclick="showMsg('star1')">Why I’m Proud of You</button>
+<div id="star1" class="hidden-message">
+You carry responsibilities quietly, but never stop loving deeply.
+That strength is rare.
+</div>
+
+<button onclick="showMsg('star2')">Why I Love You</button>
+<div id="star2" class="hidden-message">
+You feel everything deeply.  
+And I promise to protect that heart forever.
+</div>
+
+<button onclick="showMsg('star3')">The Moment I Knew</button>
+<div id="star3" class="hidden-message">
+The moment I stopped imagining a future alone  
+and started seeing you in every dream.
+</div>
+</div>
+</section>
+
+<!-- OPEN WHEN -->
+<section>
+<h2>Open When… 🍫</h2>
+
+<button onclick="showMsg('miss')">You Miss Me</button>
+<div id="miss" class="hidden-message">
+Distance is temporary.  
+Marriage is forever.  
+And I choose forever with you.
+</div>
+
+<button onclick="showMsg('cry')">You’re Crying</button>
+<div id="cry" class="hidden-message">
+Come here. Sit with me.  
+You don’t have to be strong all the time.
+</div>
+
+<button onclick="showMsg('pretty')">You Feel Pretty</button>
+<div id="pretty" class="hidden-message">
+You are the kind of beautiful that grows with time.
+</div>
+
+<button onclick="showMsg('tired')">You’re Tired</button>
+<div id="tired" class="hidden-message">
+Rest. I’m proud of how far you’ve come.
+</div>
+
+</section>
+
+<!-- FLOWER GARDEN -->
+<section>
+<h2>Our Flower Garden 💐</h2>
+
+<div class="flower-msg" id="flowerMsg">
+I want to give you lots of flowers that exists for life, Here we go 
+Click on Flowers 🌸
+</div>
+
+<span class="flower" onclick="flower('🌸','Our first anniversary proved distance cannot break real love','#fff0f6')">🌸</span>
+<span class="flower" onclick="flower('🌺','Your laugh is still my favorite sound','#fff5e6')">🌺</span>
+<span class="flower" onclick="flower('🌷','Our first I love you changed my life','#f0fff4')">🌷</span>
+<span class="flower" onclick="flower('🌹','I will marry you. I am sure of it.','#f3f0ff')">🌹</span>
+
+</section>
+
+<!-- TIMER -->
+<section>
+<h2>Time Since Our Last Hug</h2>
+<div class="countdown" id="countdown"></div>
+</section>
+
+<!-- LETTER -->
+<section>
+<h2>Anniversary Letter</h2>
+
+<div class="letter">
+<p>One year ago, love stopped being an idea. It became you.</p>
+
+<p>
+Long distance didn’t weaken us.  
+It carved depth into our love.
+</p>
+
+<p>
+You are emotional, soft, brave, responsible, and endlessly loving.  
+I admire the woman you are becoming.
+</p>
+
+<p>
+As i know you love 'words'  
+I love you more than you ever imagine.  
+I miss you like crazy
+And you are precious for me.
+</p>
+
+
+<p>
+I was not able to give you anything , so i try to make something that will make you feel special.
+</p>
+
+<p>
+This website is temporary.  
+My love is permanent.
+</p>
+
+
+<p>Forever yours.</p>
+</div>
+</section>
+
+<script>
+function showMsg(id){
+  const el=document.getElementById(id);
+  el.style.display=el.style.display==="block"?"none":"block";
+}
+
+function toggleGift(){
+  const g=document.getElementById("gift");
+  g.style.display=g.style.display==="block"?"none":"block";
+}
+
+function flower(emoji,msg,color){
+  document.getElementById("flowerMsg").innerText=emoji+" "+msg;
+  document.body.style.background=color;
+}
+
+// timer since 29 April 2024
+const startDate=new Date("April 29, 2025 00:00:00");
+
+function updateCountdown(){
+  const now=new Date();
+  const diff=now-startDate;
+
+  const days=Math.floor(diff/(1000*60*60*24));
+  const hours=Math.floor((diff/(1000*60*60))%24);
+  const mins=Math.floor((diff/(1000*60))%60);
+
+  document.getElementById("countdown").innerText=
+    days+" days "+hours+" hours "+mins+" minutes";
+}
+
+setInterval(updateCountdown,1000);
+updateCountdown();
+</script>
+
+</body>
+</html>
